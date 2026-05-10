@@ -34,8 +34,7 @@ URL → 抓取标题 → 查询扩展研究 → 提取主查询
 ### 前置条件
 
 - 已安装 [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code),或者[codex]
-- 已安装 [agent-browser](https://github.com/nicekid1/agent-browser)（推荐，轻量级浏览器自动化）：`npm i -g agent-browser && agent-browser install`
-- 已配置 [Playwright MCP Server](https://github.com/anthropics/claude-code/tree/main/mcps/playwright)（可选，agent-browser 不可用时的兜底方案）
+- 已配置 [Playwright MCP Server](https://github.com/anthropics/claude-code/tree/main/mcps/playwright)（浏览器自动化）
 
 ### 安装
 
