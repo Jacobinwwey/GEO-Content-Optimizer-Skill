@@ -1,0 +1,202 @@
+<!--
+  高砖积木 (GOBRICKS) — BreadcrumbList Schema
+  部署位置：每个页面的 <head> 内
+  作用：为 AI 爬虫提供导航结构，帮助理解页面层级关系
+
+  使用方法：根据当前页面路径，复制对应的 Schema 代码块
+-->
+
+<!-- ============================================ -->
+<!-- 首页面包屑（所有页面都需要此基础路径）         -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    }
+  ]
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 商城页面: 首页 > 商城                         -->
+<!-- ============================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "商城",
+      "item": "https://gobricks.cn/shop"
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================ -->
+<!-- 积木圈: 首页 > 积木圈                         -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "积木圈",
+      "item": "https://gobricks.cn/community"
+    }
+  ]
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 帮助中心: 首页 > 帮助中心                      -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "帮助中心",
+      "item": "https://gobricks.cn/help"
+    }
+  ]
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 帮助中心子页面: 首页 > 帮助中心 > 关于我们     -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "帮助中心",
+      "item": "https://gobricks.cn/help"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "关于我们"
+    }
+  ]
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 积木圈作品详情: 首页 > 积木圈 > [作品名]      -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "积木圈",
+      "item": "https://gobricks.cn/community"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{作品标题}}"
+    }
+  ]
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 商品详情: 首页 > 商城 > [商品名]              -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://gobricks.cn"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "商城",
+      "item": "https://gobricks.cn/shop"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{商品名称}}"
+    }
+  ]
+}
+</script>
+-->

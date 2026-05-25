@@ -1,0 +1,234 @@
+<!--
+  高砖积木 (GOBRICKS) — Article Schema 模板集合
+  部署位置：对应页面的 <head> 内
+  使用方法：替换 {{变量}} 为实际值后嵌入
+
+  包含模板：
+  1. BlogPosting — 博客/教程文章
+  2. TechArticle — 工具使用/技术教程
+  3. MOC 作品标记 — 积木圈作品页
+  4. Product — 商品详情页
+  5. E-E-A-T 作者 @graph — 带作者标记的文章
+-->
+
+<!-- ============================================ -->
+<!-- 1. BlogPosting — 博客文章/教程                -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{文章标题}}",
+  "description": "{{文章摘要，100-200字}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{作者姓名}}",
+    "url": "{{作者主页URL}}"
+  },
+  "datePublished": "{{发布日期 YYYY-MM-DD}}",
+  "dateModified": "{{修改日期 YYYY-MM-DD}}",
+  "image": "{{封面图URL}}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "高砖积木",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gobricks.cn/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{文章URL}}"
+  }
+}
+</script>
+-->
+
+<!-- 使用示例：MOC入门教程文章 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "积木MOC入门指南：从零开始创作你的第一件积木作品",
+  "description": "详细介绍积木MOC入门步骤：选择拼搭软件、设计作品、导出零件表、购买散件、完成拼搭。适合积木爱好者和新手设计师参考。",
+  "author": {
+    "@type": "Person",
+    "name": "{{作者名}}",
+    "url": "https://gobricks.cn/designer/{{作者ID}}"
+  },
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "image": "https://gobricks.cn/images/moc-guide-cover.jpg",
+  "publisher": {
+    "@type": "Organization",
+    "name": "高砖积木",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gobricks.cn/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gobricks.cn/blog/moc-guide"
+  }
+}
+</script>
+
+
+<!-- ============================================ -->
+<!-- 2. TechArticle — 工具箱使用教程               -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "{{教程标题}}",
+  "description": "{{教程摘要}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{作者名}}"
+  },
+  "datePublished": "{{YYYY-MM-DD}}",
+  "dateModified": "{{YYYY-MM-DD}}",
+  "proficiencyLevel": "Beginner",
+  "publisher": {
+    "@type": "Organization",
+    "name": "高砖积木",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gobricks.cn/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{文章URL}}"
+  }
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 3. CreativeWork — MOC 积木圈作品              -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{作品标题}}",
+  "description": "{{作品描述}}",
+  "creator": {
+    "@type": "Person",
+    "name": "{{设计师名}}",
+    "url": "https://gobricks.cn/designer/{{设计师ID}}"
+  },
+  "dateCreated": "{{创作日期}}",
+  "genre": "{{分类：建筑/军事/车辆/机甲/动物/人物}}",
+  "material": "积木零件",
+  "image": "{{作品封面图URL}}",
+  "url": "{{作品页面URL}}"
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 4. Product — 商城商品页                       -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{商品名称}}",
+  "description": "{{商品描述}}",
+  "image": "{{商品图片URL}}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{品牌名}}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "{{价格}}",
+    "priceCurrency": "CNY",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "高砖积木"
+    }
+  }
+}
+</script>
+-->
+
+<!-- 使用示例：MOC主题素材包 -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "【赛车工坊】高砖积木MOC主题素材印刷包",
+  "description": "赛车主题积木MOC素材印刷包，包含赛车工坊主题所需的全套印刷零件和装饰素材，适合MOC爱好者和积木设计师使用。",
+  "image": "https://gobricks.cn/images/products/racing-workshop.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "高砖积木"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "49.9",
+    "priceCurrency": "CNY",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "高砖积木"
+    }
+  }
+}
+</script>
+-->
+
+
+<!-- ============================================ -->
+<!-- 5. E-E-A-T 作者 @graph — 最大权威信号         -->
+<!-- ============================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://gobricks.cn/designer/{{设计师ID}}",
+      "name": "{{设计师名}}",
+      "jobTitle": "积木MOC设计师",
+      "knowsAbout": ["积木拼搭", "MOC创作", "{{专长领域}}"],
+      "hasCredential": "高砖积木认证设计师，{{作品数量}}件原创作品",
+      "sameAs": [
+        "{{设计师社交链接1}}",
+        "{{设计师社交链接2}}"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "{{文章标题}}",
+      "author": {
+        "@id": "https://gobricks.cn/designer/{{设计师ID}}"
+      },
+      "datePublished": "{{YYYY-MM-DD}}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "高砖积木"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{文章URL}}"
+      }
+    }
+  ]
+}
+</script>
+-->
