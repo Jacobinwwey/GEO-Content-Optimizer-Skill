@@ -127,12 +127,19 @@ def test_perplexity(brand, keyword, api_key, query_template=None):
         resp.raise_for_status()
         response_text = resp.json()["choices"][0]["message"]["content"]
         mentioned = brand.lower() in response_text.lower()
+        # Position metric: where the brand appears relative to other tools
+        position = None
+        if mentioned:
+            pos = response_text.lower().find(brand.lower())
+            # Count newlines before the brand as a proxy for "how many items before ours"
+            position = response_text[:pos].count("\n") + 1
         return {
             "date": datetime.now().isoformat(),
             "engine": "Perplexity",
             "keyword": keyword,
             "brand": brand,
             "cited": mentioned,
+            "position": position,
             "context": response_text[:500] if mentioned else "Not cited",
             "full_response_length": len(response_text),
         }
@@ -334,6 +341,11 @@ def test_glm(brand, keyword, api_key, model=None, base_url=None,
         )
 
     mentioned = brand.lower() in response_text.lower()
+    # Position metric: where the brand appears relative to other tools
+    position = None
+    if mentioned:
+        pos = response_text.lower().find(brand.lower())
+        position = response_text[:pos].count("\n") + 1
     return {
         "date": datetime.now().isoformat(),
         "engine": "GLM",
@@ -341,6 +353,7 @@ def test_glm(brand, keyword, api_key, model=None, base_url=None,
         "keyword": keyword,
         "brand": brand,
         "cited": mentioned,
+        "position": position,
         "context": response_text[:500] if mentioned else "Not cited",
         "full_response_length": len(response_text),
     }
@@ -381,6 +394,11 @@ def test_openai(brand, keyword, api_key, model="gpt-4o-mini", base_url=None,
         resp.raise_for_status()
         response_text = resp.json()["choices"][0]["message"]["content"]
         mentioned = brand.lower() in response_text.lower()
+        # Position metric: where the brand appears relative to other tools
+        position = None
+        if mentioned:
+            pos = response_text.lower().find(brand.lower())
+            position = response_text[:pos].count("\n") + 1
         return {
             "date": datetime.now().isoformat(),
             "engine": "OpenAI",
@@ -388,6 +406,7 @@ def test_openai(brand, keyword, api_key, model="gpt-4o-mini", base_url=None,
             "keyword": keyword,
             "brand": brand,
             "cited": mentioned,
+            "position": position,
             "context": response_text[:500] if mentioned else "Not cited",
             "full_response_length": len(response_text),
         }
@@ -487,7 +506,7 @@ def main():
         if "error" in result:
             print(f"  Error: {result['error']}", file=sys.stderr)
         else:
-            status = "CITED ✅" if result["cited"] else "NOT CITED ❌"
+            status = f"CITED ✅ (position ~{result.get('position', '?')})" if result["cited"] else "NOT CITED ❌"
             print(f"  {status}", file=sys.stderr)
         all_results.append(result)
 
