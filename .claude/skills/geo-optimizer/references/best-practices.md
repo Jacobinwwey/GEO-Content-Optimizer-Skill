@@ -41,7 +41,7 @@
 ## Monthly GEO Checklist
 
 1. Run `readability_checker.py` on new content
-2. Run `visibility_tester.py` for brand monitoring (requires Perplexity API key)
+2. Run `visibility_tester.py` for brand monitoring (requires GLM API key or Perplexity API key)
 3. Update FAQ with new customer questions
 4. Add new case study data to articles
 5. Verify all new pages have correct Schema

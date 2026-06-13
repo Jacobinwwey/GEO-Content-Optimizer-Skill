@@ -156,19 +156,89 @@ python scripts/readability_checker.py --file article.txt
 
 ### D1. AI 可见度测试（月度）
 
-使用 `scripts/visibility_tester.py` 调用 Perplexity API。
+使用 `scripts/visibility_tester.py` 调用 GLM (智谱) API（默认）或 Perplexity API。
+
+> **零配置**：脚本会自动从 `~/.claude/settings.json` 读取 `ANTHROPIC_AUTH_TOKEN`、`ANTHROPIC_BASE_URL`、`ANTHROPIC_MODEL`，无需手动设置任何环境变量。模型名中的代理前缀（如 `z-ai/glm-5.1`）会自动剥离。
+
+**GLM 引擎（默认，即开即用）：**
 
 ```bash
-python scripts/visibility_tester.py --brand "品牌名" --keywords "关键词1" "关键词2" --api-key "pplx-xxx"
+# 自动从 Claude Code settings 读取 API key / base URL / model
+python scripts/visibility_tester.py --brand "品牌名" --keywords "关键词1" "关键词2"
 ```
 
-要求用户提供 Perplexity API Key（获取：https://docs.perplexity.ai/）。
+**手动指定（覆盖自动检测）：**
+
+```bash
+python scripts/visibility_tester.py \
+  --brand "品牌名" --keywords "关键词1" "关键词2" \
+  --api-key "your-key" --model "glm-4-flash" --base-url "https://open.bigmodel.cn/api/paas/v4"
+```
+
+**使用 Perplexity 引擎：**
+
+```bash
+python scripts/visibility_tester.py \
+  --engine perplexity \
+  --brand "品牌名" \
+  --keywords "关键词1" "关键词2" \
+  --api-key "pplx-xxxxx"
+```
+
+**自定义查询模板：**
+
+```bash
+python scripts/visibility_tester.py \
+  --brand "高砖积木" \
+  --keywords "积木品牌" "国产积木" \
+  --query "{keyword}有哪些值得推荐的品牌？"
+```
 
 脚本会：
 1. 用多个关键词构造查询
 2. 检测品牌名是否出现在 AI 回复中
 3. 提取引用上下文
 4. 结果自动追加到历史 JSON 文件
+
+**配置解析顺序（高优先级 → 低优先级）：**
+
+| 优先级 | 来源 | API Key | Model | Base URL |
+|--------|------|---------|-------|----------|
+| 1 (最高) | CLI 参数 | `--api-key` | `--model` | `--base-url` |
+| 2 | 环境变量 | `GLM_API_KEY` | `GLM_MODEL` | `GLM_BASE_URL` |
+| 3 | Claude Code settings | `ANTHROPIC_AUTH_TOKEN` | `ANTHROPIC_MODEL` | `ANTHROPIC_BASE_URL` |
+| 4 (最低) | 默认值 | — | `glm-4-flash` | `https://open.bigmodel.cn/api/paas/v4` |
+
+> 代理前缀自动剥离：`z-ai/glm-5.1` → `glm-5.1`
+
+**Perplexity 引擎：**
+
+```bash
+python scripts/visibility_tester.py \
+  --engine perplexity \
+  --brand "品牌名" \
+  --keywords "关键词1" "关键词2" \
+  --api-key "pplx-xxxxx"
+```
+
+**自定义查询模板：**
+
+```bash
+python scripts/visibility_tester.py \
+  --brand "高砖积木" \
+  --keywords "积木品牌" "国产积木" \
+  --query "{keyword}有哪些值得推荐的品牌？"
+```
+
+**引擎对比：**
+
+| 维度 | GLM (默认) | Perplexity |
+|------|-------------|------------|
+| 国内可用性 | 直连，无需翻墙 | 需翻墙 |
+| API 获取 | open.bigmodel.cn | perplexity.ai |
+| SDK 依赖 | `openai` (`pip install openai`) | `requests` (`pip install requests`) |
+| 搜索方式 | 内置 `web_search` 工具（单次调用） | sonar-pro 模型 |
+| 零配置 | 自动读取 `~/.claude/settings.json` | 需手动传 `--api-key` |
 
 **无 API Key 时**：提供手动测试指引（在 ChatGPT/Perplexity/Gemini 中搜索目标关键词，观察是否提及品牌）。
 
